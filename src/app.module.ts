@@ -2,9 +2,9 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AppService } from './app.service';
-import { PedidoModule } from './pedido/pedido.module';
-import { ClienteModule } from './cliente/cliente.module';
-import { ProductoModule } from './producto/producto.module';
+import { PedidoModule } from './Pedido/pedido.module';
+import { ClienteModule } from './Cliente/cliente.module';
+import { ProductoModule } from './Producto/producto.module';
 import 'dotenv/config';
 import { EmpleadoModule } from './Empleado/empleado.module';
 

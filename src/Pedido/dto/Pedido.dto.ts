@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 import { Date } from "mongoose";
 import { IEmpleado } from "src/Empleado/empleado.Model";
-import { ICliente } from "src/cliente/cliente.model";
-import { IProducto } from "src/producto/producto.Model";
+import { ICliente } from "src/Cliente/cliente.model";
+import { IProducto } from "src/Producto/producto.Model";
 
 export class PedidoDto{
     Cliente: ICliente;
