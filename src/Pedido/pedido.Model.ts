@@ -16,11 +16,12 @@ export const PedidoSchema = new mongoose.Schema({
         _id: String 
         
     }],
+    Observaciones_Generales: String,
     Recibio:  {type: mongoose.SchemaTypes.ObjectId, ref:"Empleado"},
     Despacho: {type: mongoose.SchemaTypes.ObjectId, ref:"Empleado"},
     Empaco: String,
     Hora_Pedido: { type: String, default:()=>moment.tz(Date.now(),"America/Bogota").format('YYYY-MM-DD h:mm:ss  A') },
-    Hora_Despacho: Date,
+    Hora_Despacho: String,
     Estado: {type: Boolean, default: false}
 })
 
@@ -34,6 +35,7 @@ export interface IPedido extends mongoose.Document{
         _id?: string | mongoose.Types.ObjectId;
 
       }[];
+    Observaciones_Generales: String;
     Recibio: IEmpleado;
     Despacho: IEmpleado;
     Empaco:String;

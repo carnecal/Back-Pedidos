@@ -22,7 +22,8 @@ export class PedidoService {
                     Producto: item.Producto,
                     Cantidad: item.Cantidad,
                     Peso: item.Peso,
-                    Observaciones: item.Observaciones
+                    Observaciones: item.Observaciones,
+                    _id: new mongoose.Types.ObjectId(), 
                 }));
             }
             return await nuevoPedido.save();
@@ -37,21 +38,17 @@ async Update(pedidoId: string, pedidoDto: PedidoDto): Promise<IPedido> {
     try {
       // Buscar el pedido existente por su ID
       const pedidoExistente = await this.pedidoModel.findById(pedidoId);
-  
       // Si no se encontró el pedido, lanzar un error
       if (!pedidoExistente) {
         throw new NotFoundException(`Pedido con ID ${pedidoId} no encontrado`);
       }
-  
       // Actualizar los campos del pedido existente con los nuevos valores
       pedidoExistente.set(pedidoDto);
-  
       // Verificar si hay ítems en el pedido antes de actualizar
       if (pedidoDto.Items && pedidoDto.Items.length > 0) {
         // Actualizar los ítems del pedido
-        pedidoExistente.Items = pedidoDto.Items.map(item => {
-          const itemExistente = pedidoExistente.Items.find(i => i._id?.toString() === item._id?.toString());
-  
+        pedidoExistente.Items = pedidoDto.Items.map((item, index) => {
+          const itemExistente = pedidoExistente.Items[index];
           if (itemExistente) {
             // Actualizar el item existente
             itemExistente.Producto = item.Producto || itemExistente.Producto;
@@ -71,10 +68,8 @@ async Update(pedidoId: string, pedidoDto: PedidoDto): Promise<IPedido> {
           }
         });
       }
-  
       // Guardar los cambios en el pedido existente
       const pedidoActualizado = await pedidoExistente.save();
-  
       return pedidoActualizado;
     } catch (error) {
       // Manejo de errores

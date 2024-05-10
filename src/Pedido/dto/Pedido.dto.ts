@@ -13,6 +13,8 @@ export class PedidoDto{
       Observaciones: String;
       _id?: string | mongoose.Types.ObjectId;
     }[]
+
+    Observaciones_Generales: String;
     
     Recibio: IEmpleado;
     Despacho: IEmpleado
@@ -22,5 +24,6 @@ export class PedidoDto{
     Hora_Despacho: Date;
     
     Estado: boolean
+
   }
     

@@ -44,7 +44,7 @@ export class PedidoController {
       if (resultado == null) {
         throw new HttpException('no encontrado', HttpStatus.NOT_FOUND);
       }
-      return resultado;
+      return {ok:true, resultado};
     }
 
 }
